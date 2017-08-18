@@ -1,4 +1,4 @@
-fourpx-wms-laravel
+wlwx-laravel
 ============
 
 A PHP package to connect to Wlwx's sms in an object-oriented manner, with a focus on intuitive usage.
