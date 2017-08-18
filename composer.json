@@ -1,0 +1,30 @@
+{
+    "name": "jimmy/wlwx",
+    "description": "Use WLWX's WMS web services with Laravel 5.x.",
+    "license": "Apache-2.0",
+    "keywords": ["API", "Wlwx", "PHP", "Laravel"],
+    "authors": [
+        {
+            "name": "Jimmy",
+            "email": "gao1963bin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jimmy\\Wlwx\\": "src/"
+        }
+    },
+    "version":"0.2.0",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.2.x-dev"
+        }
+    }
+}
