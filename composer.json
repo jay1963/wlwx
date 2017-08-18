@@ -1,6 +1,6 @@
 {
     "name": "jimmy/wlwx",
-    "description": "Use WLWX's sms web services with Laravel 5.x.",
+    "description": "Use WLWX's SMS web services with Laravel 5.x.",
     "license": "Apache-2.0",
     "keywords": ["API", "Wlwx", "PHP", "Laravel"],
     "authors": [
