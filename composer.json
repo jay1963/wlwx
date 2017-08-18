@@ -1,6 +1,6 @@
 {
     "name": "jimmy/wlwx",
-    "description": "Use WLWX's WMS web services with Laravel 5.x.",
+    "description": "Use WLWX's sms web services with Laravel 5.x.",
     "license": "Apache-2.0",
     "keywords": ["API", "Wlwx", "PHP", "Laravel"],
     "authors": [
@@ -21,10 +21,10 @@
             "Jimmy\\Wlwx\\": "src/"
         }
     },
-    "version":"0.2.0",
+    "version":"0.1.0",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.2.x-dev"
+            "dev-master": "0.1.x-dev"
         }
     }
 }
