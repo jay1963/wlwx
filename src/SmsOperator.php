@@ -1,5 +1,5 @@
 <?php
-namespace Jimmy\WLWX;
+namespace Jimmy\Wlwx;
 
 class SmsOperator {
     public $cust_code;
