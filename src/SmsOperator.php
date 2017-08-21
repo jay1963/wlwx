@@ -1,5 +1,6 @@
 <?php
 namespace Jimmy\Wlwx;
+use Config;
 
 class SmsOperator {
     public $cust_code;
@@ -9,28 +10,10 @@ class SmsOperator {
     public $uid;
     public $wlwx_config;
 
-    public function __construct($cust_code = null, $cust_pwd = null, $sp_code = null, $need_report = null, $uid = null) {
-        $this->wlwx_config = $GLOBALS['WLWX_CONFIG'];
-        if ($cust_code == null)
-            $this->cust_code = $this->wlwx_config['CUST_CODE'];
-        else
-            $this->cust_code = $cust_code;
-        if ($cust_pwd == null)
-            $this->cust_pwd = $this->wlwx_config['CUST_PWD'];
-        else
-            $this->cust_pwd = $cust_pwd;
-        if ($sp_code == null)
-            $this->sp_code = $this->wlwx_config['SP_CODE'];
-        else
-            $this->sp_code = $sp_code;
-        if ($need_report == null)
-            $this->need_report = $this->wlwx_config['NEED_REPORT'];
-        else
-            $this->need_report = $need_report;
-        if ($uid == null)
-            $this->uid = $this->wlwx_config['UID'];
-        else
-            $this->uid = $uid;
+    public function __construct($cust_code = null, $cust_pwd = null, $sp_code = null, $need_report = null, $uid = null) 
+    {
+        $this->wlwx_config = Config('wlwx');
+        $this->initParam();
     }
     /**
      * 发送普通短信
@@ -116,5 +99,29 @@ class SmsOperator {
         $data['passwd'] = $sign;
         $data['temp_content'] = $temp_content;
         return HttpUtil::PostCURL($this->wlwx_config['URI_SMS_TEMPLATE'], json_encode($data));
+    }
+
+    private function initParam()
+    {
+        if ($cust_code == null)
+            $this->cust_code = $this->wlwx_config['CUST_CODE'];
+        else
+            $this->cust_code = $cust_code;
+        if ($cust_pwd == null)
+            $this->cust_pwd = $this->wlwx_config['CUST_PWD'];
+        else
+            $this->cust_pwd = $cust_pwd;
+        if ($sp_code == null)
+            $this->sp_code = $this->wlwx_config['SP_CODE'];
+        else
+            $this->sp_code = $sp_code;
+        if ($need_report == null)
+            $this->need_report = $this->wlwx_config['NEED_REPORT'];
+        else
+            $this->need_report = $need_report;
+        if ($uid == null)
+            $this->uid = $this->wlwx_config['UID'];
+        else
+            $this->uid = $uid;
     }
 }

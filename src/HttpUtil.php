@@ -1,5 +1,6 @@
 <?php
 namespace Jimmy\Wlwx;
+use Config;
 
 class HttpUtil {
     /**
@@ -22,7 +23,7 @@ class HttpUtil {
         do{
             $output = curl_exec($ch);
             $retry++;
-        }while((curl_errno($ch) !== 0) && $retry<$GLOBALS['WLWX_CONFIG']['RETRY_TIMES']);
+        }while((curl_errno($ch) !== 0) && $retry < $this->getWlwxRetryConfig());
         if (curl_errno($ch) !== 0) {
             $r = new Result(null, $post_data, null,curl_error($ch));
             curl_close($ch);
@@ -54,7 +55,7 @@ class HttpUtil {
         do{
             $output = curl_exec($ch);
             $retry++;
-        }while((curl_errno($ch) !== 0) && $retry<$GLOBALS['WLWX_CONFIG']['RETRY_TIMES']);
+        }while((curl_errno($ch) !== 0) && $retry < $this->getWlwxRetryConfig());
         if (curl_errno($ch) !== 0) {
             $r = new Result(null, $post_data, null,curl_error($ch));
             curl_close($ch);
@@ -64,5 +65,10 @@ class HttpUtil {
         $ret = new Result($statusCode,$post_data,$output,null);
         curl_close($ch);
         return $ret;
+    }
+
+    private function getWlwxRetryConfig()
+    {
+        return Config('wlwx.RETRY_TIMES');
     }
 }
