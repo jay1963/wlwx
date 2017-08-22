@@ -11,7 +11,7 @@ class MultiSmsOperator {
     public function __construct($uid = null, $cust_pwd = null, $srcphone = null) 
     {
         $this->wlwx_config = Config('wlwx');
-        $this->initParam();
+        $this->initParam($uid, $cust_pwd, $srcphone);
     }
     /**
      * 批量发送短信
@@ -47,7 +47,7 @@ class MultiSmsOperator {
         return $rs;
     }
 
-    public function initParam()
+    public function initParam($uid = null, $cust_pwd = null, $srcphone = null)
     {
         if ($uid == null)
             $this->uid = $this->wlwx_config['CUST_CODE'];

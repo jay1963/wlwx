@@ -13,7 +13,7 @@ class SmsOperator {
     public function __construct($cust_code = null, $cust_pwd = null, $sp_code = null, $need_report = null, $uid = null) 
     {
         $this->wlwx_config = Config('wlwx');
-        $this->initParam();
+        $this->initParam($cust_code, $cust_pwd, $sp_code, $need_report, $uid) ;
     }
     /**
      * 发送普通短信
@@ -101,7 +101,7 @@ class SmsOperator {
         return HttpUtil::PostCURL($this->wlwx_config['URI_SMS_TEMPLATE'], json_encode($data));
     }
 
-    private function initParam()
+    private function initParam($cust_code = null, $cust_pwd = null, $sp_code = null, $need_report = null, $uid = null) 
     {
         if ($cust_code == null)
             $this->cust_code = $this->wlwx_config['CUST_CODE'];
