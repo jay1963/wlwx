@@ -10,6 +10,7 @@ class HttpUtil {
      * @return Result
      */
     public static function PostCURL($url,$post_data){
+        $wlwxRetryTimes = Config('wlwx.RETRY_TIMES');
         $ch = curl_init();
         curl_setopt ($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
@@ -23,7 +24,7 @@ class HttpUtil {
         do{
             $output = curl_exec($ch);
             $retry++;
-        }while((curl_errno($ch) !== 0) && $retry < $this->getWlwxRetryConfig());
+        }while((curl_errno($ch) !== 0) && $retry < $wlwxRetryTimes);
         if (curl_errno($ch) !== 0) {
             $r = new Result(null, $post_data, null,curl_error($ch));
             curl_close($ch);
@@ -42,6 +43,7 @@ class HttpUtil {
      * @return Result
      */
     public static function PostCURL_Multi($url,$post_data){
+        $wlwxRetryTimes = Config('wlwx.RETRY_TIMES');
         $ch = curl_init();
         curl_setopt ($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
@@ -55,7 +57,7 @@ class HttpUtil {
         do{
             $output = curl_exec($ch);
             $retry++;
-        }while((curl_errno($ch) !== 0) && $retry < $this->getWlwxRetryConfig());
+        }while((curl_errno($ch) !== 0) && $retry < $wlwxRetryTimes);
         if (curl_errno($ch) !== 0) {
             $r = new Result(null, $post_data, null,curl_error($ch));
             curl_close($ch);
@@ -65,10 +67,5 @@ class HttpUtil {
         $ret = new Result($statusCode,$post_data,$output,null);
         curl_close($ch);
         return $ret;
-    }
-
-    private function getWlwxRetryConfig()
-    {
-        return Config('wlwx.RETRY_TIMES');
     }
 }
