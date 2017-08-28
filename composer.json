@@ -17,10 +17,10 @@
             "Jimmy\\Wlwx\\": "src/"
         }
     },
-    "version":"0.1.0",
+    "version":"0.2.0",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     }
 }
